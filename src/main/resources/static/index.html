@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="modone">
     
     <head >
         <script src="js/libs/angular.min.js"></script>
@@ -11,9 +11,25 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
-    <body >
-
-                       
+    <body ng-controller="plan_control" >
+        {{23+17}}
+        
+        <select ng-model="select">
+            <option  ng-repeat="o in array" value="{{o}}">
+            {{o}}
+            </option>
+        </select>
+        <button type="button" class="btn btn-warning"  ng-click="loadData()">
+            GET
+        </button>
+        <button type="button" class="btn btn-warning"  ng-click="consultPLane()">
+            DRAW
+        </button>
+        <button type="button" class="btn btn-warning"  ng-click="consultPLane2()">
+            DRAW2
+        </button>
+        <canvas id="myCanvas" width="800" height="600" style="border:1px solid #000000;"> </canvas> 
+        <svg id="mySVG" width="800" height="600" style="border:1px solid #000000;"></svg>
         
     </body>
 </html>
