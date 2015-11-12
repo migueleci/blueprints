@@ -47,9 +47,6 @@
                 ctx.lineTo(points[len-1].x,points[len-1].y);
                 ctx.stroke();
                 
-                //var img = data;
-                //ctx.drawImage(img,10,10);
-                 
             });
         };
         
@@ -63,12 +60,31 @@
             
             response.success(function(data, status, headers, config) {
                 var svgContainer= document.getElementById("mySVG");
-                var c = document.createElementNS("http://www.w3.org/2000/svg", "circle");
-                c.cx.baseVal.value = 20;
-                c.cy.baseVal.value = 20;
-                c.r.baseVal.value = 20;
-                c.style.fill = "lime";
+                
+                var fig = data;
+                var points = fig.points;
+                var len = points.length;
+                
+                var c = document.createElementNS("http://www.w3.org/2000/svg", "line");
+                
+                var i;
+                for (i=1;i<len;i++){                    
+                    c.setAttribute('x1', points[i-1].x);
+                    c.setAttribute('y1', points[i-1].y);
+                    c.setAttribute('x2', points[i].x);
+                    c.setAttribute('y2', points[i].y);
+                    c.setAttribute('stroke', "black");
+                    svgContainer.appendChild(c);
+                    
+                    c = document.createElementNS("http://www.w3.org/2000/svg", "line");
+                }
+                c.setAttribute('x1', points[0].x);
+                c.setAttribute('y1', points[0].y);
+                c.setAttribute('x2', points[len-1].x);
+                c.setAttribute('y2', points[len-1].y);
+                c.setAttribute('stroke', "black");
                 svgContainer.appendChild(c);
+                
             });
         };
     });
